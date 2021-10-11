@@ -1,7 +1,8 @@
-import { GuildMember, User } from 'discord.js';
+import { GuildMember, Message, User } from 'discord.js';
 import { Messages } from '../Globals/Messages';
 import { Bot } from '../main';
 import { hasRole } from '../Utils';
+import Config from '../Config';
 
 export let Commands: Commands = {};
 
@@ -14,23 +15,26 @@ type Command = {
    Params?: any[];
    Permissions?: string[];
    Roles?: string[];
-   Call (User: User, Member: GuildMember, args: string[]): void;
+   Call (Message: Message, args: string[]): void;
 };
 
 Bot.on('messageCreate', Message => {
    if (Message.author.bot) return;
    
-   if (Message.content.startsWith('/')) { 
+   if (Message.content.startsWith(Config.Prefix)) { 
       let args = Message.content.split(/ +/);
       let Name:string = args.splice(0, 1)[0];
-      Name = Name.replace('/', '');
-      console.log('Command name ' + Name);
-      console.log(args);
+      Name = Name.replace(Config.Prefix, '');
+
+      // DEBUG
+      // console.log('Command name ' + Name);
+      // console.log(args);
+
       if (Commands[Name]) {
          const Command = Commands[Name];
          if (Command.Roles && Message.member != null && hasRole(Message.member, Command.Roles) != false) return;
          if (Message.member) { 
-            Command.Call(Message.author, Message.member, args);
+            Command.Call(Message, args);
          }
       } else { 
          Message.reply(Messages.CMD_NOT_FOUND);
@@ -41,4 +45,5 @@ Bot.on('messageCreate', Message => {
 
 
 import '../Commands/Funny';
-import '../Commands/VerifyChannel';
+import '../Commands/Admin';
+
