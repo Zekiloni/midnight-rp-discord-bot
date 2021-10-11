@@ -41,3 +41,4 @@ Bot.on('messageCreate', Message => {
 
 
 import '../Commands/Funny';
+import '../Commands/VerifyChannel';
