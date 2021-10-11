@@ -2,7 +2,7 @@ import { Commands } from "../Managers/Command.Manager";
 
 Commands['zeki'] = { 
    Description: 'zeki',
-   Call: (args) => { 
-
+   Call: (User, Member, args) => { 
+      console.log('zeki called');
    }
-}
+};
