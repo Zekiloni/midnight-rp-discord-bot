@@ -1,0 +1,20 @@
+{
+  "name": "midnight-rp-discord",
+  "version": "1.0.0",
+  "description": "Midnight Roleplay - Discord Bot",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/main.js",
+    "dev": "ts-node src/main.ts"
+  },
+  "author": "Zekiloni",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^4.4.3"
+  },
+  "dependencies": {
+    "@discordjs/voice": "^0.6.0",
+    "discord.js": "^13.2.0"
+  }
+}
