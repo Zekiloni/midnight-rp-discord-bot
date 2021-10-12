@@ -52,7 +52,7 @@ Commands['verification'] = {
 Commands['say'] = {
    Description: Messages.CMD_SAY,
    Call: (Message: Message, args: string[]) => {
-        let saytext = args.join(" ");
+        const saytext = args.join(' ');
         Message.channel.send(saytext);
         Message.delete();
    }
