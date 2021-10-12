@@ -16,10 +16,12 @@ export const Bot = new Client(
 import './Managers/Welcoming.Manager';
 import './Managers/Verification.Manager';
 import './Managers/Command.Manager';
+import './Managers/Message.Manager';
+import { Logger, LogType } from './Utils';
 
 Bot.on('ready', () => {
    Bot.user?.setActivity('mn-rp.com', { type: 'PLAYING' })
-   console.log('Ready !');
+   Logger(LogType.Succes, 'Ready !')
 });
 
 
