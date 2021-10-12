@@ -8,6 +8,7 @@ export default {
    Verification_Channel: '897183073861500930',
    Verification_Role: 'Verified',
    Gateway_Channel: '897485251989880854',
+   Meme_Link: 'https://www.reddit.com/r/memes/random/.json',
    Muted_Role: 'Muted',
    Prefix: '/'
 };
