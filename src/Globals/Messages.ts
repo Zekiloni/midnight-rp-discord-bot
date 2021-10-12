@@ -6,5 +6,6 @@ export const Messages = {
    CREATING_VERIFY_CHANNEL: 'Kreiranje kanala za verifikaciju.',
    WELCOME: 'se pridružio serveru.',
    CMD_SAY: 'Pricanje preko bota.',
-   CMD_MUTE: 'Ućutkivanje člana servera.'
+   CMD_MUTE: 'Ućutkivanje člana servera.',
+   CMD_BOT_READY: 'Midnight Roleplay Bot is online.'
 }

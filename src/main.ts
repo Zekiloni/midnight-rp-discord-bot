@@ -1,5 +1,7 @@
 import { Client, Intents  } from 'discord.js';
 import Config from './Config';
+import { Messages } from './Globals/Messages';
+
 
 export const Bot = new Client(
    { 
@@ -20,8 +22,8 @@ import './Managers/Message.Manager';
 import { Logger, LogType } from './Utils';
 
 Bot.on('ready', () => {
-   Bot.user?.setActivity('mn-rp.com', { type: 'PLAYING' })
-   Logger(LogType.Succes, 'Ready !')
+   Bot.user?.setActivity(Config.Website, { type: 'PLAYING' })
+   Logger(LogType.Succes, Messages.CMD_BOT_READY)
 });
 
 
