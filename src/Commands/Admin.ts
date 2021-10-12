@@ -6,7 +6,7 @@ import { Guild } from '../Utils';
 
 
 Commands['mute'] = { 
-   Description: 'Ućutkivanje člana servera.',
+   Description: Messages.CMD_MUTE,
    Call: (Message: Message, args: string[]) => { 
       const Target = Message.mentions.members?.first();
       const Role = Guild?.roles.cache.find(role => role.name === Config.Muted_Role);
@@ -47,5 +47,13 @@ Commands['verification'] = {
    
       Message.channel.send({ embeds: [Verify_Msg] });
 
+   }
+};
+Commands['say'] = {
+   Description: Messages.CMD_SAY,
+   Call: (Message: Message, args: string[]) => {
+        let saytext = args.join(" ");
+        Message.channel.send(saytext);
+        Message.delete();
    }
 };
