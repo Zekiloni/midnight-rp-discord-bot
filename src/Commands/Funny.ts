@@ -1,13 +1,13 @@
-import { TextChannel, MessageEmbed } from 'discord.js'; 
+import { TextChannel, MessageEmbed, Message } from 'discord.js'; 
 import got from 'got';
-import { Message } from 'discord.js';
 import { Commands } from '../Managers/Command.Manager';
+import { Messages } from '../Globals/Messages';
 import { Logger, LogType } from '../Utils';
 import Config from '../Config';
 
 
 Commands['meme'] = { 
-   Description: 'Jedan sveži meme.',
+   Description: Messages.CMD_MEMES,
    Call: (Message: Message, args: string[])=> { 
       const Channel = Message.channel as TextChannel;
       if (/spam/.test(Channel.name) == false) return;
@@ -29,5 +29,18 @@ Commands['meme'] = {
          Logger(LogType.Error, 'Meme ' + e);
       });
    
+   }
+};
+
+Commands['coin'] = {
+   Description: Messages.CMD_COIN,
+   Call: (Message: Message, args: string[])=> { 
+      const randomTextsArray = [
+            Messages.CMD_RANDOM_COIN_BACK,
+            Messages.CMD_RANDOM_COIN_HEAD
+        ],
+      randomItemFromArray = randomTextsArray[Math.floor(Math.random()*randomTextsArray.length)];
+
+      Message.reply(randomItemFromArray);
    }
 };

@@ -7,5 +7,9 @@ export const Messages = {
    WELCOME: 'se pridružio serveru.',
    CMD_SAY: 'Pricanje preko bota.',
    CMD_MUTE: 'Ućutkivanje člana servera.',
-   CMD_BOT_READY: 'Midnight Roleplay Bot is online.'
+   CMD_BOT_READY: 'Midnight Roleplay Bot is online.',
+   CMD_MEMES: 'Jedan sveži meme.',
+   CMD_COIN: 'Prevrtanje novčića',
+   CMD_RANDOM_COIN_BACK: 'Novčić se okrenuo na leđima.',
+   CMD_RANDOM_COIN_HEAD: 'Novčić se okrenuo na glavi.'
 }
