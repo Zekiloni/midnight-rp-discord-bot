@@ -1,8 +1,5 @@
 import { GuildMember } from "discord.js";
-import Config from "./Config";
-import { Bot } from "./main";
 
-export const Guild = Bot.guilds.cache.get(Config.Guild_ID);
 
 export function DateTime () {
    let now = new Date(), time = now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds(), date = [now.getUTCFullYear(), now.getUTCMonth() + 1, now.getUTCDate()].join('-');

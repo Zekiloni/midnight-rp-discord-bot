@@ -1,19 +1,16 @@
-import { Message, MessageEmbed  } from 'discord.js';
+import { Message, MessageEmbed } from 'discord.js';
 import Config from '../Config';
 import { Messages } from '../Globals/Messages';
 import { Commands } from '../Managers/Command.Manager';
-import { Guild } from '../Utils';
 
 
 Commands['mute'] = { 
    Description: Messages.CMD_MUTE,
    Call: (Message: Message, args: string[]) => { 
       const Target = Message.mentions.members?.first();
-      const Role = Guild?.roles.cache.find(role => role.name === Config.Muted_Role);
-      console.log(Role);
+      const Role = Target?.guild?.roles.cache.find(role => role.name === Config.Muted_Role);
 
       if (Role) Target?.roles.add(Role);
-      console.log(2)
    }
 }
 

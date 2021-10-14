@@ -9,7 +9,7 @@ export const Messages = {
    CMD_MUTE: 'Ućutkivanje člana servera.',
    CMD_BOT_READY: 'Midnight Roleplay Bot is online.',
    CMD_MEMES: 'Jedan sveži meme.',
-   CMD_COIN: 'Prevrtanje novčića',
-   CMD_RANDOM_COIN_BACK: 'Novčić se okrenuo na leđima.',
-   CMD_RANDOM_COIN_HEAD: 'Novčić se okrenuo na glavi.'
+   CMD_COIN: 'Prevrtanje novčića.',
+   CMD_RANDOM_COIN_BACK: 'Novčić pada na *pismo*.',
+   CMD_RANDOM_COIN_HEAD: 'Novčić pada na *glavu*.'
 }

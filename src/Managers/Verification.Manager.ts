@@ -1,9 +1,8 @@
 import { TextChannel } from "discord.js";
 import Config from '../Config';
 import { Bot } from '../main';
-import { Guild } from '../Utils';
 
- 
+
 Bot.on('messageReactionAdd', async (Reaction, User) => {
    if (Reaction.message.channelId != Config.Verification_Channel) return;
    
@@ -17,9 +16,12 @@ Bot.on('messageReactionAdd', async (Reaction, User) => {
 	}
 
    if (Reaction.emoji.name == '✅') {
-      const Member = Guild?.members.cache.get(User.id);
 
-      const Role = Guild?.roles.cache.find(role => role.name === Config.Verification_Role);
+		const Guild = Bot.guilds.cache.get(Config.Guild_ID); 
+      const Member = Guild?.members.cache.find(member => member.user.id === User.id);
+
+      const Role = Member?.guild?.roles.cache.find(role => role.name === Config.Verification_Role);
+
 
       if (Member?.roles.cache.some(role => role.name === Config.Verification_Role)) return;
 
@@ -39,9 +41,10 @@ Bot.on('messageReactionRemove', async (Reaction, User) => {
 		}
 	}
    if (Reaction.emoji.name == '✅') { 
+		const Guild = Bot.guilds.cache.get(Config.Guild_ID); 
       const Member = Guild?.members.cache.get(User.id);
 
-      const Role = Guild?.roles.cache.find(role => role.name === Config.Verification_Role);
+      const Role = Member?.guild?.roles.cache.find(role => role.name === Config.Verification_Role);
       if (Role) Member?.roles.remove(Role);
    }
 });
