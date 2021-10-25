@@ -11,5 +11,8 @@ export const Messages = {
    CMD_MEMES: 'Jedan sveži meme.',
    CMD_COIN: 'Prevrtanje novčića.',
    CMD_RANDOM_COIN_BACK: 'Novčić pada na *pismo*.',
-   CMD_RANDOM_COIN_HEAD: 'Novčić pada na *glavu*.'
+   CMD_RANDOM_COIN_HEAD: 'Novčić pada na *glavu*.',
+   CMD_PLAY_MUSIC: 'Pusti muziku',
+   CLIENT_NOT_IN_VOICE: 'Niste u voice.',
+   CMD_INFORMATION: 'Informacije oko server'
 }

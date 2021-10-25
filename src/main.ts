@@ -19,6 +19,7 @@ import './Managers/Welcoming.Manager';
 import './Managers/Verification.Manager';
 import './Managers/Command.Manager';
 import './Managers/Message.Manager';
+
 import { Logger, LogType } from './Utils';
 
 Bot.on('ready', () => {

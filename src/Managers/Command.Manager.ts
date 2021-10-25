@@ -46,4 +46,3 @@ Bot.on('messageCreate', (Message: Message) => {
 
 import '../Commands/Funny';
 import '../Commands/Admin';
-

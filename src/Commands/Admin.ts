@@ -21,31 +21,16 @@ Commands['verification'] = {
       if (Message.channel.id != Config.Verification_Channel) return;
 
       const Verify_Msg = new MessageEmbed()
-         .setColor('#0099ff')
+         .setColor('#7b19f2')
          .setTitle(Message.guild?.name!)
          .setURL('https://mn-rp.com')
-         //.setAuthor('Some name', 'https://i.imgur.com/AfFp7pu.png', 'https://discord.js.org')
-         //.setDescription('Some description here')
-         //.setThumbnail('https://i.imgur.com/AfFp7pu.png')
-         // .addFields(
-         //    { name: 'Regular field title', value: 'Some value here' },
-         //    { name: '\u200B', value: '\u200B' },
-         //    { name: 'Inline field title', value: 'Some value here', inline: true },
-         //    { name: 'Inline field title', value: 'Some value here', inline: true },
-         // )
-         .addField('🎗 Pravila Discord servera', '🧠 Ako mislite da ćete dobiti upozorenje za nešto, nemojte to raditi!\n\n \
-         🌸 *Budite ljubazni* i prijateljski nastrojeni prema svim članovima ove zajednice.\n\n \
-         💬 *Aktivno doprinosite* tipskim raspravama, ali *izbjegavajte rasprave koje su generalno predmet sukoba, koje će Vas dovesti u svađu ili konflikt sa nekim od članova zajednica!*.\n\n \
-         🛑 Pokušajte izbjeći *konflkit* koliko je god moguće u vašim porukama. Ako ste nehoticom nekoga uvrijedili, od Vas se očekuje da se osobi javite na privatnu poruku, te da ispravite narušeno. Budite čovjek!\n\n \
-         📢 Mi volimo pomoći svima, zato ukoliko imate neke *nedoumice* javite se u za to predviđen te će Vas neko od našeg osoblja ili članova zajednice kontaktirati!', true)
-         //.setImage('https://i.imgur.com/AfFp7pu.png')
-         //.setTimestamp()
-         //.setFooter('Some footer text here', 'https://i.imgur.com/AfFp7pu.png');
-   
-      Message.channel.send({ embeds: [Verify_Msg] });
-
-   }
+         .setImage("https://i.imgur.com/q1R8Q6w.png")
+         .addField("Da biste pristupili discord zajednice, morat ćete se složiti s gore navedenim pravilima.", "Klikom na ✅ slažete se s gore navedenim pravilima i bit ćete odgovorni za svoje ponašanje u ovoj zajednici, kršenje bilo kojeg od navedenih pravila rezultirat će kaznom.")
+         .setFooter("Midnight Roleplay | mn-rp.com");
+         Message.channel.send({ embeds: [Verify_Msg] });
+      }
 };
+
 Commands['say'] = {
    Description: Messages.CMD_SAY,
    Call: (Message: Message, args: string[]) => {
@@ -54,3 +39,27 @@ Commands['say'] = {
         Message.delete();
    }
 };
+
+Commands['information'] = {
+   Description: Messages.CMD_INFORMATION,
+   Call: (Message: Message, args: string[]) => {
+      const Verify_Msg = new MessageEmbed()
+      .setColor('#7b19f2')
+      .setTitle(Message.guild?.name!)
+      .setURL('https://mn-rp.com')
+      .setImage("https://i.imgur.com/q1R8Q6w.png")
+      .addFields(
+       { name: "**__Server IP__**", value: "server.mn-rp.com", inline: true },
+       { name: "**__RageMP__**", value: "[Click to download](https://cdn.rage.mp/public/files/RAGEMultiplayer_Setup.exe)", inline: true },
+       { name: "\u200b", value: "\u200b", inline: true }
+      )
+      .addFields(
+       { name: "**__Website__**", value: "[mn-rp.com](https://mn-rp.com)", inline: true },
+       { name: "**__Forum__**", value: "[forum.mn-rp.com](https://forum.mn-rp.com)", inline: true },
+       { name: "\u200b", value: "\u200b", inline: true }
+      )   
+      .setTimestamp()
+      .setFooter("Last Update");
+      Message.channel.send({ embeds: [Verify_Msg] });
+   }
+}
