@@ -26,9 +26,7 @@ Commands['play'] = {
             {
                 queue.stop();
             }
-            return song.name;
         });
-        const objSong = JSON.parse(song);
         TextChannel.send('Pustam: **' + song.name + '**, Pustio: <@' + Message!.member! + '>');
         Message.delete();
    }
