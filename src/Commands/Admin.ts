@@ -1,19 +1,16 @@
-import { Message, MessageEmbed  } from 'discord.js';
+import { Message, MessageEmbed } from 'discord.js';
 import Config from '../Config';
 import { Messages } from '../Globals/Messages';
 import { Commands } from '../Managers/Command.Manager';
-import { Guild } from '../Utils';
 
 
 Commands['mute'] = { 
    Description: Messages.CMD_MUTE,
    Call: (Message: Message, args: string[]) => { 
       const Target = Message.mentions.members?.first();
-      const Role = Guild?.roles.cache.find(role => role.name === Config.Muted_Role);
-      console.log(Role);
+      const Role = Target?.guild?.roles.cache.find(role => role.name === Config.Muted_Role);
 
       if (Role) Target?.roles.add(Role);
-      console.log(2)
    }
 }
 
@@ -24,31 +21,16 @@ Commands['verification'] = {
       if (Message.channel.id != Config.Verification_Channel) return;
 
       const Verify_Msg = new MessageEmbed()
-         .setColor('#0099ff')
+         .setColor('#7b19f2')
          .setTitle(Message.guild?.name!)
          .setURL('https://mn-rp.com')
-         //.setAuthor('Some name', 'https://i.imgur.com/AfFp7pu.png', 'https://discord.js.org')
-         //.setDescription('Some description here')
-         //.setThumbnail('https://i.imgur.com/AfFp7pu.png')
-         // .addFields(
-         //    { name: 'Regular field title', value: 'Some value here' },
-         //    { name: '\u200B', value: '\u200B' },
-         //    { name: 'Inline field title', value: 'Some value here', inline: true },
-         //    { name: 'Inline field title', value: 'Some value here', inline: true },
-         // )
-         .addField('🎗 Pravila Discord servera', '🧠 Ako mislite da ćete dobiti upozorenje za nešto, nemojte to raditi!\n\n \
-         🌸 *Budite ljubazni* i prijateljski nastrojeni prema svim članovima ove zajednice.\n\n \
-         💬 *Aktivno doprinosite* tipskim raspravama, ali *izbjegavajte rasprave koje su generalno predmet sukoba, koje će Vas dovesti u svađu ili konflikt sa nekim od članova zajednica!*.\n\n \
-         🛑 Pokušajte izbjeći *konflkit* koliko je god moguće u vašim porukama. Ako ste nehoticom nekoga uvrijedili, od Vas se očekuje da se osobi javite na privatnu poruku, te da ispravite narušeno. Budite čovjek!\n\n \
-         📢 Mi volimo pomoći svima, zato ukoliko imate neke *nedoumice* javite se u za to predviđen te će Vas neko od našeg osoblja ili članova zajednice kontaktirati!', true)
-         //.setImage('https://i.imgur.com/AfFp7pu.png')
-         //.setTimestamp()
-         //.setFooter('Some footer text here', 'https://i.imgur.com/AfFp7pu.png');
-   
-      Message.channel.send({ embeds: [Verify_Msg] });
-
-   }
+         .setImage("https://i.imgur.com/q1R8Q6w.png")
+         .addField("Da biste pristupili discord zajednice, morat ćete se složiti s gore navedenim pravilima.", "Klikom na ✅ slažete se s gore navedenim pravilima i bit ćete odgovorni za svoje ponašanje u ovoj zajednici, kršenje bilo kojeg od navedenih pravila rezultirat će kaznom.")
+         .setFooter("Midnight Roleplay | mn-rp.com");
+         Message.channel.send({ embeds: [Verify_Msg] });
+      }
 };
+
 Commands['say'] = {
    Description: Messages.CMD_SAY,
    Call: (Message: Message, args: string[]) => {
@@ -57,3 +39,53 @@ Commands['say'] = {
         Message.delete();
    }
 };
+
+Commands['information'] = {
+   Description: Messages.CMD_INFORMATION,
+   Call: (Message: Message, args: string[]) => {
+      const Verify_Msg = new MessageEmbed()
+      .setColor('#7b19f2')
+      .setTitle(Message.guild?.name!)
+      .setURL('https://mn-rp.com')
+      .setImage("https://i.imgur.com/q1R8Q6w.png")
+      .addFields(
+       { name: "**__Server IP__**", value: "server.mn-rp.com", inline: true },
+       { name: "**__RageMP__**", value: "[Click to download](https://cdn.rage.mp/public/files/RAGEMultiplayer_Setup.exe)", inline: true },
+       { name: "\u200b", value: "\u200b", inline: true }
+      )
+      .addFields(
+       { name: "**__Website__**", value: "[mn-rp.com](https://mn-rp.com)", inline: true },
+       { name: "**__Forum__**", value: "[forum.mn-rp.com](https://forum.mn-rp.com)", inline: true },
+       { name: "\u200b", value: "\u200b", inline: true }
+      )   
+      .setTimestamp()
+      .setFooter("Last Update");
+      Message.channel.send({ embeds: [Verify_Msg] });
+   }
+}
+
+Commands['rules'] = {
+	Description: Messages.CMD_RULES,
+	Call: (Message: Message, args: string[]) => {
+	const Verify_Msg = new MessageEmbed()
+        .setColor('#7b19f2')
+        .setTitle('Midnight Roleplay - Discord Pravila')
+		.addFields(
+		   { name: "**Pravilo br.1**", value: "Budite ljubezni i poštujte druge članove.", inline: true },
+		   { name: "**Pravilo br.2**", value: "Uznemiravanje, zlostavljanje, rasizam ili diskriminatorni komentari se ne tolerišu.", inline: true },
+		   { name: "**Pravilo br.3**", value: "Koristite ispravan kanal koji je specifičan za vaše potrebe ili sadržaj za chatovanje.", inline: true }
+		)
+		.addFields(
+		   { name: "**Pravilo br.4**", value: "Ne spamajte, niti ne tagujte ljude više puta.", inline: true },
+		   { name: "**Pravilo br.5**", value: "Ne prikazujte privatne podatke o članovima zajednice.", inline: true },
+		   { name: "**Pravilo br.6**", value: "Ne prikazujte nikakav NSFW sadržaj putem chatovanja ili avatara.", inline: true }
+		)
+		.addFields(
+		   { name: "**Pravilo br.7**", value: "Ne reklamirajte nikakav sadržaj koji nije povezan sa Midnight Roleplay.", inline: true },
+		   { name: "**Pravilo br.8**", value: "Nemojte tagovati staff team-a na bilo kom od javnih kanala.", inline: true },
+		   { name: "**Kazne**", value: "Svako kršenje ovog skupa pravila če rezultirati ban-om/kick-om.", inline: true }
+		)		
+        .setFooter("Midnight Roleplay | mn-rp.com/staff");
+    Message.channel.send({ embeds: [Verify_Msg] });
+   }
+}

@@ -18,7 +18,7 @@ type Command = {
    Call (Message: Message, args: string[]): void;
 };
 
-Bot.on('messageCreate', Message => {
+Bot.on('messageCreate', (Message: Message) => {
    if (Message.author.bot) return;
    
    if (Message.content.startsWith(Config.Prefix)) { 
@@ -46,4 +46,4 @@ Bot.on('messageCreate', Message => {
 
 import '../Commands/Funny';
 import '../Commands/Admin';
-
+import '../Commands/Music';
