@@ -27,7 +27,7 @@ Commands['play'] = {
                 queue.stop();
             }
         });
-        TextChannel.send('Pustam: **' + song.name + '**, Pustio: <@' + Message!.member! + '>');
+        TextChannel.send('Pustam: **' + song?.name + '**, Pustio: <@' + Message!.member! + '>');
         Message.delete();
    }
 };
