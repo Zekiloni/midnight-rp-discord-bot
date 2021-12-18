@@ -63,3 +63,29 @@ Commands['information'] = {
       Message.channel.send({ embeds: [Verify_Msg] });
    }
 }
+
+Commands['rules'] = {
+	Description: Messages.CMD_RULES,
+	Call: (Message: Message, args: string[]) => {
+	const Verify_Msg = new MessageEmbed()
+        .setColor('#7b19f2')
+        .setTitle('Midnight Roleplay - Discord Pravila')
+		.addFields(
+		   { name: "**Pravilo br.1**", value: "Budite ljubezni i poštujte druge članove.", inline: true },
+		   { name: "**Pravilo br.2**", value: "Uznemiravanje, zlostavljanje, rasizam ili diskriminatorni komentari se ne tolerišu.", inline: true },
+		   { name: "**Pravilo br.3**", value: "Koristite ispravan kanal koji je specifičan za vaše potrebe ili sadržaj za chatovanje.", inline: true }
+		)
+		.addFields(
+		   { name: "**Pravilo br.4**", value: "Ne spamajte, niti ne tagujte ljude više puta.", inline: true },
+		   { name: "**Pravilo br.5**", value: "Ne prikazujte privatne podatke o članovima zajednice.", inline: true },
+		   { name: "**Pravilo br.6**", value: "Ne prikazujte nikakav NSFW sadržaj putem chatovanja ili avatara.", inline: true }
+		)
+		.addFields(
+		   { name: "**Pravilo br.7**", value: "Ne reklamirajte nikakav sadržaj koji nije povezan sa Midnight Roleplay.", inline: true },
+		   { name: "**Pravilo br.8**", value: "Nemojte tagovati staff team-a na bilo kom od javnih kanala.", inline: true },
+		   { name: "**Kazne**", value: "Svako kršenje ovog skupa pravila če rezultirati ban-om/kick-om.", inline: true }
+		)		
+        .setFooter("Midnight Roleplay | mn-rp.com/staff");
+    Message.channel.send({ embeds: [Verify_Msg] });
+   }
+}

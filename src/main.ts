@@ -1,4 +1,4 @@
-import { Client, Intents  } from 'discord.js';
+import { Client, Intents } from 'discord.js';
 import Config from './Config';
 import { Messages } from './Globals/Messages';
 
@@ -9,7 +9,8 @@ export const Bot = new Client(
          Intents.FLAGS.GUILDS,
          Intents.FLAGS.GUILD_MEMBERS, 
          Intents.FLAGS.GUILD_MESSAGES,
-         Intents.FLAGS.GUILD_MESSAGE_REACTIONS
+         Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
+         Intents.FLAGS.GUILD_VOICE_STATES
       ],
       partials: ['MESSAGE', 'CHANNEL', 'REACTION'],
    }
