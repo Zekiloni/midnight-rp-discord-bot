@@ -20,10 +20,10 @@ export const Music = {
       await queue.join(Channel);
 
       let guildQueue = this.Player.getQueue(Message!.guild!.id);
-      let song = await queue.play(args.join(' ')).catch(_ => {
+      const Song = await queue.play(args.join(' ')).catch(_ => {
          if (!guildQueue) 
             queue.stop();
-      });
+      });      
 
       Message.delete();
    }
@@ -31,7 +31,7 @@ export const Music = {
 
 Music.Player
    .on('songAdd', (Queue: Queue, Song: Song) => { 
-      Music.Dispatch?.send(Messages.PLAYER_PLAYING + '**' + Song.name + '**, *' + Song.requestedBy + '*');
+      Music.Dispatch?.send(Messages.PLAYER_PLAYING + '**' + Song.name + '**.');
    })
 
 
