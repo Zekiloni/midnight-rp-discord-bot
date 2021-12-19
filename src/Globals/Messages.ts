@@ -16,5 +16,7 @@ export const Messages = {
    CLIENT_NOT_IN_VOICE: 'Niste u voice.',
    CMD_INFORMATION: 'Informacije oko server',
    CMD_RULES: 'Discord Rules',
-   CMD_PLAY: 'Music Play'
+   CMD_PLAY: 'Music Play',
+
+   PLAYER_PLAYING: 'Dodana pesma u plejlistu ',
 }
