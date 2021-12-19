@@ -18,10 +18,7 @@ Commands['play'] = {
 Commands['stop'] = {
     Description: Messages.CMD_PLAY,
     Call: async (Message: Message, args: string[]) => { 
-        let guildQueue = Music.Player.getQueue(Message!.guild!.id);
-        const TextChannel = Message.channel as TextChannel;
-        guildQueue!.stop();
-        TextChannel.send('Stopirano: **' + guildQueue!.nowPlaying + '**, Od: <@' + Message!.member! + '>');
-        Message.delete();
+      Music.Stop(Message);
+      Message.delete();
    }
 };

@@ -30,6 +30,12 @@ export const Music = {
       });    
 
       this.Requests.set(Song, Message.member);
+   },
+
+   Stop (Message: Message) { 
+      let guildQueue = Music.Player.getQueue(Message!.guild!.id);
+      guildQueue!.stop();
+      this.Dispatch?.send('Stopirano: **' + guildQueue!.nowPlaying + '**, Od: <@' + Message!.member! + '>');
    }
 };
 
