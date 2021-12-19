@@ -22,31 +22,37 @@ export const Music = {
       await queue.join(Channel);
 
       let guildQueue = this.Player.getQueue(Message!.guild!.id);
-      const Song = await queue.play(args.join(' ')).catch(_ => {
+
+      queue.play(args.join(' ')).then((Song: Song) => { 
+         console.log(Song);
+         this.Requests.set(Song, Message.member);
+      }).catch(_ => { 
          if (!guildQueue) {
             queue.stop();
             Logger(LogType.Error, _);
          }
-      });    
-
-      this.Requests.set(Song, Message.member);
+      });
    },
 
    Stop (Message: Message) { 
       let guildQueue = Music.Player.getQueue(Message!.guild!.id);
-      guildQueue!.stop();
-      this.Dispatch?.send('Stopirano: **' + guildQueue!.nowPlaying + '**, Od: <@' + Message!.member! + '>');
+      if (guildQueue) {
+         guildQueue!.stop();
+         this.Dispatch?.send('Stopirano: **' + guildQueue!.nowPlaying + '**, Od: <@' + Message!.member! + '>');
+      }
    }
 };
 
 Music.Player
    .on('songAdd', (Queue: Queue, Song: Song) => { 
       const RequestedBy: GuildMember = Music.Requests.get(Song);
-      Music.Dispatch?.send(Messages.PLAYER_PLAYING + '**' + Song.name + '**, ' + Messages.REQUESTED_BY + ' <@' + RequestedBy.id + '>. ');
+      console.log('Request ' + RequestedBy.id)
+      if (RequestedBy) Music.Dispatch?.send(Messages.SONG_ADDED + '**' + Song.name + '**, ' + Messages.REQUESTED_BY + ' <@' + RequestedBy.id + '>. ');
    })
    .on('songChanged', (Queue: Queue, NewSong: Song, OldSong: Song) => { 
-      const Request = Music.Requests.get(OldSong);
-      if (Request) Music.Requests.delete(OldSong);
+      const RequestedBy = Music.Requests.get(OldSong);
+      if (RequestedBy) Music.Requests.delete(OldSong);
+      Music.Dispatch?.send(Messages.SONG_PLAYING + '**' + Song.name + '**, ' + Messages.REQUESTED_BY + ' <@' + RequestedBy.id + '>. ');
    })
 
 

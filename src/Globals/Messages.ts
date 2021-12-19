@@ -18,6 +18,7 @@ export const Messages = {
    CMD_RULES: 'Discord Rules',
    CMD_PLAY: 'Music Play',
 
-   PLAYER_PLAYING: 'Dodana pesma u plejlistu ',
+   SONG_ADDED: 'Dodana pesma u plejlistu ',
+   SONG_PLAYING: 'Trenutno puštam ',
    REQUESTED_BY: 'Pustio:'
 }
