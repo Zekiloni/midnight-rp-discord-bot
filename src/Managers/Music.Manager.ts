@@ -40,6 +40,17 @@ export const Music = {
          guildQueue!.stop();
          this.Dispatch?.send('Stopirano: **' + guildQueue!.nowPlaying + '**, Od: <@' + Message!.member! + '>');
       }
+   },
+
+   Volume (Message: Message, args: string[]) { 
+      let guildQueue = this.Player.getQueue(Message?.guild!.id);
+      guildQueue?.setVolume(parseInt(args[0]));
+   },
+
+   Skip (Message: Message) { 
+      let guildQueue = this.Player.getQueue(Message?.guild!.id);
+      guildQueue?.skip();
+
    }
 };
 
