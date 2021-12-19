@@ -19,4 +19,5 @@ export const Messages = {
    CMD_PLAY: 'Music Play',
 
    PLAYER_PLAYING: 'Dodana pesma u plejlistu ',
+   REQUESTED_BY: 'Pustio:'
 }

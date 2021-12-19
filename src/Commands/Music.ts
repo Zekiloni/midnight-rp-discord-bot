@@ -9,11 +9,9 @@ import { Music } from '../Managers/Music.Manager';
 Commands['play'] = { 
    Description: Messages.CMD_PLAY,
    Call: async (Message: Message, args: string[]) => { 
-        if (!args) return;
-
-        Music.Play(Message, args);
-
-   		
+         if (!args) return;
+         Music.Play(Message, args);
+         Message.delete();
    }
 };
 
