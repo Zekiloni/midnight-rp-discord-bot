@@ -22,3 +22,20 @@ Commands['stop'] = {
       Message.delete();
    }
 };
+
+Commands['skip'] = {
+   Description: Messages.CMD_PLAY,
+   Call: async (Message: Message, args: string[]) => { 
+     Music.Skip(Message);
+     Message.delete();
+   }
+};
+
+Commands['replay'] = {
+   Description: Messages.CMD_PLAY,
+   Call: async (Message: Message, args: string[]) => { 
+      const Loop = Music.SetLoop(Message);
+      Message.channel.send(Messages.REPLAY + ': **' + (Loop ? Messages.ENABLED : Messages.DISABLED) + '**.');
+      Message.delete();
+   }
+};

@@ -19,6 +19,9 @@ export const Messages = {
    CMD_PLAY: 'Music Play',
 
    SONG_ADDED: 'Dodana pesma u plejlistu ',
-   SONG_PLAYING: 'Trenutno puštam ',
-   REQUESTED_BY: 'Pustio:'
+   NOW_PLAYING: 'Trenutna Pesma',
+   REQUESTED_BY: 'Pustio',
+   REPLAY: 'Ponavljanje',
+   ENABLED: 'Uključeno',
+   DISABLED: 'Iključeno'
 }
