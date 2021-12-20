@@ -23,5 +23,6 @@ export const Messages = {
    REQUESTED_BY: 'Pustio',
    REPLAY: 'Ponavljanje',
    ENABLED: 'Uključeno',
-   DISABLED: 'Iključeno'
+   DISABLED: 'Iključeno',
+   PAUSE: 'Pauza'
 }

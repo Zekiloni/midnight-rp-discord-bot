@@ -13,6 +13,7 @@ export const Music = {
       volume: 200,
    }),
 
+   Paused: false,
    Replay: 0,
    Requests: new Map(),
    Dispatch: <TextBasedChannels | null> null,
@@ -44,6 +45,15 @@ export const Music = {
       }
    },
 
+   Pause (Message: Message) {
+      let guildQueue = Music.Player.getQueue(Message!.guild!.id);
+      if (guildQueue) {
+         this.Paused = !this.Paused;
+         guildQueue.setPaused(this.Paused);
+         return this.Paused;
+      }
+   },
+
    Volume (Message: Message, args: string[]) { 
       let guildQueue = this.Player.getQueue(Message?.guild!.id);
       guildQueue?.setVolume(parseInt(args[0]));
@@ -71,16 +81,18 @@ Music.Player
       const RequestedBy: GuildMember = Music.Requests.get(NewSong);
       if (RequestedBy) Music.Requests.delete(NewSong);
 
-      const Info = new MessageEmbed()
-         .setAuthor(Messages.NOW_PLAYING)
-         .setTitle(NewSong.name)
-         .setURL(NewSong.url)
-         .setColor('RANDOM')
-         .addField(Messages.REQUESTED_BY, '<@' + RequestedBy.id + '>', true)
-         .setThumbnail(NewSong.thumbnail)
-         .setFooter(Config.Website);
+      if (NewSong && RequestedBy) {
+         const Info = new MessageEmbed()
+            .setAuthor(Messages.NOW_PLAYING)
+            .setTitle(NewSong.name)
+            .setURL(NewSong.url)
+            .setColor('RANDOM')
+            .addField(Messages.REQUESTED_BY, '<@' + RequestedBy.id + '>', true)
+            .setThumbnail(NewSong.thumbnail)
+            .setFooter(Config.Website);
 
          Music.Dispatch?.send({ embeds: [Info] });
+      }
    })
 
 
