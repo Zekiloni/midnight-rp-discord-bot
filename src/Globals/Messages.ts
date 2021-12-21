@@ -24,5 +24,6 @@ export const Messages = {
    REPLAY: 'Ponavljanje',
    ENABLED: 'Uključeno',
    DISABLED: 'Iključeno',
-   PAUSE: 'Pauza'
+   PAUSE: 'Pauza',
+   VOLUME: 'Pojačavanje zvuka'
 }

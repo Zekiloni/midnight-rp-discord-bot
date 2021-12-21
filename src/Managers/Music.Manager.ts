@@ -28,6 +28,8 @@ export const Music = {
 
       queue.play(args.join(' ')).then((Song: Song) => { 
          this.Requests.set(Song, Message.member);
+         const Index = guildQueue?.songs.indexOf(Song);
+         Logger(LogType.Info, 'Index ' + Index + ', songs ' + guildQueue?.songs.length);
          this.Dispatch?.send(Messages.SONG_ADDED + '**' + Song.name + '**, ' + Messages.REQUESTED_BY + ' <@' + Message.member?.id + '>. ');
       }).catch(_ => { 
          if (!guildQueue) {
@@ -54,9 +56,9 @@ export const Music = {
       }
    },
 
-   Volume (Message: Message, args: string[]) { 
+   Volume (Message: Message, X: number) { 
       let guildQueue = this.Player.getQueue(Message?.guild!.id);
-      guildQueue?.setVolume(parseInt(args[0]));
+      guildQueue?.setVolume(X);
    },
 
    Skip (Message: Message) { 

@@ -8,9 +8,9 @@ import { Music } from '../Managers/Music.Manager';
 Commands['play'] = { 
    Description: Messages.CMD_PLAY,
    Call: async (Message: Message, args: string[]) => { 
-         if (!args) return;
-         Music.Play(Message, args);
-         Message.delete();
+      if (!args) return;
+      Music.Play(Message, args);
+      Message.delete();
    }
 };
 
@@ -44,6 +44,15 @@ Commands['pause'] = {
    Call: async (Message: Message, args: string[]) => { 
       const Paused = Music.Pause(Message);
       Message.channel.send(Messages.PAUSE + ': **' + (Paused ? Messages.ENABLED : Messages.DISABLED) + '**.');
+      Message.delete();
+   }
+};
+
+Commands['volume'] = {
+   Description: Messages.CMD_PLAY,
+   Call: async (Message: Message, args: string[]) => { 
+      Music.Volume(Message, parseInt(args[0]));
+      Message.channel.send('🔊 ' + Messages.VOLUME + ': **' + args[0] + '%**');
       Message.delete();
    }
 };
