@@ -75,6 +75,16 @@ export const Music = {
       );
 
       return this.Replay;
+   },
+
+   List (Message: Message) { 
+      const guildQueue = this.Player.getQueue(Message?.guild!.id);
+      let Result = '';
+      for (let Song of guildQueue?.songs!) {
+         let i = guildQueue?.songs.indexOf(Song);
+         Result += '**' + (i! + 1) + '.** ' + Song.name + '\n';
+      }
+      return Result;
    }
 };
 

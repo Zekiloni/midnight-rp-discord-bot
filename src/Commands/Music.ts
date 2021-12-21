@@ -3,6 +3,7 @@ import { Commands } from '../Managers/Command.Manager';
 import { Messages } from '../Globals/Messages';
 
 import { Music } from '../Managers/Music.Manager';
+import { Song } from 'discord-music-player';
 
 
 Commands['play'] = { 
@@ -54,5 +55,13 @@ Commands['volume'] = {
       Music.Volume(Message, parseInt(args[0]));
       Message.channel.send('🔊 ' + Messages.VOLUME + ': **' + args[0] + '%**');
       Message.delete();
+   }
+};
+
+Commands['songs'] = {
+   Description: Messages.CMD_PLAY,
+   Call: async (Message: Message, args: string[]) => { 
+      const songs = Music.List(Message);
+      Message.reply(songs);
    }
 };
