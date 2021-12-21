@@ -35,7 +35,7 @@ Commands['replay'] = {
    Description: Messages.CMD_PLAY,
    Call: async (Message: Message, args: string[]) => { 
       const Loop = Music.SetLoop(Message);
-      Message.channel.send(Messages.REPLAY + ': **' + (Loop ? Messages.ENABLED : Messages.DISABLED) + '**.');
+      Message.channel.send('🔊 ' +Messages.REPLAY + ': **' + (Loop ? Messages.ENABLED : Messages.DISABLED) + '**.');
       Message.delete();
    }
 };
@@ -44,7 +44,7 @@ Commands['pause'] = {
    Description: Messages.CMD_PLAY,
    Call: async (Message: Message, args: string[]) => { 
       const Paused = Music.Pause(Message);
-      Message.channel.send(Messages.PAUSE + ': **' + (Paused ? Messages.ENABLED : Messages.DISABLED) + '**.');
+      Message.channel.send('🔊 ' +Messages.PAUSE + ': **' + (Paused ? Messages.ENABLED : Messages.DISABLED) + '**.');
       Message.delete();
    }
 };

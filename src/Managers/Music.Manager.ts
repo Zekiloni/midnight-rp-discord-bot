@@ -17,6 +17,7 @@ export const Music = {
    Replay: 0,
    Requests: new Map(),
    Dispatch: <TextBasedChannels | null> null,
+   Songs: 0,
 
    async Play (Message: Message, args: string[]) {
       let queue = this.Player.createQueue(Message!.guild!.id);
@@ -30,7 +31,8 @@ export const Music = {
          this.Requests.set(Song, Message.member);
          const Index = guildQueue?.songs.indexOf(Song);
          Logger(LogType.Info, 'Index ' + Index + ', songs ' + guildQueue?.songs.length);
-         this.Dispatch?.send(Messages.SONG_ADDED + '**' + Song.name + '**, ' + Messages.REQUESTED_BY + ' <@' + Message.member?.id + '>. ');
+         this.Dispatch?.send('🔊 ' + Messages.SONG_ADDED + '**' + Song.name + '**, ' + Messages.REQUESTED_BY + ' <@' + Message.member?.id + '>. ');
+         this.Songs++;
       }).catch(_ => { 
          if (!guildQueue) {
             queue.stop();
@@ -43,7 +45,7 @@ export const Music = {
       let guildQueue = Music.Player.getQueue(Message!.guild!.id);
       if (guildQueue) {
          guildQueue!.stop();
-         this.Dispatch?.send('Stopirano: **' + guildQueue!.nowPlaying + '**, Od: <@' + Message!.member! + '>');
+         this.Dispatch?.send('🔊 Bot je stopiran od: <@' + Message!.member! + '>');
       }
    },
 
@@ -61,9 +63,10 @@ export const Music = {
       guildQueue?.setVolume(X);
    },
 
-   Skip (Message: Message) { 
+   Skip (Message: Message) {
       let guildQueue = this.Player.getQueue(Message?.guild!.id);
-      guildQueue?.skip();
+      if(this.Songs <= 1) return this.Dispatch?.send('🔊 Nema pesme u queue!');
+      guildQueue?.skip(); this.Songs--;
    },
 
    SetLoop (Message: Message) {
@@ -85,6 +88,17 @@ export const Music = {
          Result += '**' + (i! + 1) + '.** ' + Song.name + '\n';
       }
       return Result;
+   },
+   
+   SetSeek(Message: Message, X: number){
+      let guildQueue = this.Player.getQueue(Message?.guild!.id);
+         guildQueue?.seek(X * 1000)
+   },
+
+   Progress(Message: Message){
+      let guildQueue = this.Player.getQueue(Message?.guild!.id);
+      const ProgressBar = guildQueue?.createProgressBar();
+      this.Dispatch?.send('🔊 **' + ProgressBar?.prettier + '**');
    }
 };
 
