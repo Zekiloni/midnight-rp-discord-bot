@@ -65,3 +65,12 @@ Commands['seek'] = {
         Message.delete();
    }
 };
+
+Commands['progress'] = {
+    Description: Messages.CMD_PLAY,
+    Call: async (Message: Message, args: string[]) => {
+        Music.Progress(Message);  
+        //Message.channel.send('🔊 ' + Messages.SEEK + '** ' + args[0] + '** ' + Messages.SECONDS);
+        Message.delete();
+   }
+};

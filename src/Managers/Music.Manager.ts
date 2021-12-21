@@ -83,6 +83,12 @@ export const Music = {
    SetSeek(Message: Message, X: number){
       let guildQueue = this.Player.getQueue(Message?.guild!.id);
          guildQueue?.seek(X * 1000)
+   },
+
+   Progress(Message: Message){
+      let guildQueue = this.Player.getQueue(Message?.guild!.id);
+      const ProgressBar = guildQueue?.createProgressBar();
+      this.Dispatch?.send('🔊 **' + ProgressBar?.prettier + '**');
    }
 };
 
