@@ -11,7 +11,7 @@ Commands['meme'] = {
    Call: (Message: Message, args: string[])=> { 
       const Channel = Message.channel as TextChannel;
       if (/spam/.test(Channel.name) == false) return;
-
+      
       got(Config.Meme_Link).then(Response => { 
          const Post = JSON.parse(Response.body)[0].data.children[0].data;
          const { title, permalink, ups, num_comments, url } = Post;
@@ -24,7 +24,7 @@ Commands['meme'] = {
             .setFooter('👍 ' + ups + ', 💬 ' + num_comments);
 
          Channel.send({ embeds: [Meme] });
-         
+
       }).catch((e: string) => { 
          Logger(LogType.Error, 'Meme ' + e);
       });

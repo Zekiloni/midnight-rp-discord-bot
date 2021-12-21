@@ -16,5 +16,16 @@ export const Messages = {
    CLIENT_NOT_IN_VOICE: 'Niste u voice.',
    CMD_INFORMATION: 'Informacije oko server',
    CMD_RULES: 'Discord Rules',
-   CMD_PLAY: 'Music Play'
+   CMD_PLAY: 'Music Play',
+
+   SONG_ADDED: 'Dodana pesma u plejlistu ',
+   NOW_PLAYING: 'Trenutna Pesma',
+   REQUESTED_BY: 'Pustio',
+   REPLAY: 'Ponavljanje',
+   ENABLED: 'Uključeno',
+   DISABLED: 'Iključeno',
+   PAUSE: 'Pauza',
+   VOLUME: 'Pojačavanje zvuka',
+   SEEK: 'Pre bačeno na',
+   SECONDS: 'sekundi'
 }

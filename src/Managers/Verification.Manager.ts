@@ -1,4 +1,3 @@
-import { TextChannel } from "discord.js";
 import Config from '../Config';
 import { Bot } from '../main';
 
