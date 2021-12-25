@@ -32,8 +32,8 @@ export const Music = {
          const Index = guildQueue?.songs.indexOf(Song);
          Logger(LogType.Info, 'Index ' + Index + ', songs ' + guildQueue?.songs.length);
          this.Dispatch?.send('🔊 ' + Messages.SONG_ADDED + '**' + Song.name + '**, ' + Messages.REQUESTED_BY + ' <@' + Message.member?.id + '>. ');
-         this.Songs++;
-         console.log('first', Song.isFirst)
+         this.Songs ++;
+         if (Song.isFirst) this.Player.emit('songChanged', guildQueue, Song, Song);
       }).catch(_ => { 
          if (!guildQueue) {
             queue.stop();
