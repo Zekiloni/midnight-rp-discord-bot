@@ -66,7 +66,6 @@ Commands['songs'] = {
    }
 };
 
-
 Commands['seek'] = {
    Description: Messages.CMD_PLAY,
    Call: async (Message: Message, args: string[]) => { 
