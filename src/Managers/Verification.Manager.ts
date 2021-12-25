@@ -4,7 +4,7 @@ import { Bot } from '../main';
 
 
 Bot.on('messageReactionAdd', async (Reaction, User) => {
-   if (Reaction.message.channelId != Enums.Chanels.VERIFICATION) return;
+   if (Reaction.message.channelId != Enums.Channels.VERIFICATION) return;
    
 	if (Reaction.partial) {
 		try {
@@ -30,7 +30,7 @@ Bot.on('messageReactionAdd', async (Reaction, User) => {
 });
 
 Bot.on('messageReactionRemove', async (Reaction, User) => {
-   if (Reaction.message.channelId != Config.Verification_Channel) return;
+   if (Reaction.message.channelId != Enums.Channels.VERIFICATION) return;
 
    if (Reaction.partial) {
 		try {

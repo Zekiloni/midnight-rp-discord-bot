@@ -1,5 +1,6 @@
 import { Message, MessageEmbed } from 'discord.js';
 import Config from '../Config';
+import { Enums } from '../Globals/Enums';
 import { Messages } from '../Globals/Messages';
 import { Commands } from '../Managers/Command.Manager';
 
@@ -18,7 +19,7 @@ Commands['mute'] = {
 Commands['verification'] = { 
    Description: Messages.CREATING_VERIFY_CHANNEL,
    Call: (Message: Message, args: string[]) => { 
-      if (Message.channel.id != Config.Verification_Channel) return;
+      if (Message.channel.id != Enums.Channels.VERIFICATION) return;
 
       const Verify_Msg = new MessageEmbed()
          .setColor('#7b19f2')
