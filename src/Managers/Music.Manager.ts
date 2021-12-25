@@ -80,6 +80,16 @@ export const Music = {
       return this.Replay;
    },
 
+   List (Message: Message) { 
+      const guildQueue = this.Player.getQueue(Message?.guild!.id);
+      let Result = '';
+      for (let Song of guildQueue?.songs!) {
+         let i = guildQueue?.songs.indexOf(Song);
+         Result += '**' + (i! + 1) + '.** ' + Song.name + '\n';
+      }
+      return Result;
+   },
+   
    SetSeek(Message: Message, X: number){
       let guildQueue = this.Player.getQueue(Message?.guild!.id);
          guildQueue?.seek(X * 1000)

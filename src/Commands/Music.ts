@@ -3,6 +3,7 @@ import { Commands } from '../Managers/Command.Manager';
 import { Messages } from '../Globals/Messages';
 
 import { Music } from '../Managers/Music.Manager';
+import { Song } from 'discord-music-player';
 
 
 Commands['play'] = { 
@@ -57,20 +58,27 @@ Commands['volume'] = {
    }
 };
 
+Commands['songs'] = {
+   Description: Messages.CMD_PLAY,
+   Call: async (Message: Message, args: string[]) => { 
+      const songs = Music.List(Message);
+      Message.reply(songs);
+   }
+};
+
+
 Commands['seek'] = {
-    Description: Messages.CMD_PLAY,
-    Call: async (Message: Message, args: string[]) => {
-        Music.SetSeek(Message, parseInt(args[0]));  
-        Message.channel.send('🔊 ' + Messages.SEEK + '** ' + args[0] + '** ' + Messages.SECONDS);
-        Message.delete();
+   Description: Messages.CMD_PLAY,
+   Call: async (Message: Message, args: string[]) => { 
+      Music.SetSeek(Message, parseInt(args[0]));
+	  Message.delete();
    }
 };
 
 Commands['progress'] = {
-    Description: Messages.CMD_PLAY,
-    Call: async (Message: Message, args: string[]) => {
-        Music.Progress(Message);  
-        //Message.channel.send('🔊 ' + Messages.SEEK + '** ' + args[0] + '** ' + Messages.SECONDS);
-        Message.delete();
+   Description: Messages.CMD_PLAY,
+   Call: async (Message: Message, args: string[]) => { 
+      Music.Progress(Message);
+	  Message.delete();
    }
 };
