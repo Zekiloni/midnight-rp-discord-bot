@@ -69,15 +69,7 @@ Commands['songs'] = {
 Commands['seek'] = {
    Description: Messages.CMD_PLAY,
    Call: async (Message: Message, args: string[]) => { 
-      Music.SetSeek(Message, parseInt(args[0]));
-	  Message.delete();
-   }
-};
-
-Commands['progress'] = {
-   Description: Messages.CMD_PLAY,
-   Call: async (Message: Message, args: string[]) => { 
-      Music.Progress(Message);
-	  Message.delete();
+      Music.SetSeek(Message, parseInt(args[0]);
+      Message.delete();
    }
 };
