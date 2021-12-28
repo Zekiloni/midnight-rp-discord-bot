@@ -32,7 +32,8 @@ export const Music = {
          const Index = guildQueue?.songs.indexOf(Song);
          Logger(LogType.Info, 'Index ' + Index + ', songs ' + guildQueue?.songs.length);
          this.Dispatch?.send('🔊 ' + Messages.SONG_ADDED + '**' + Song.name + '**, ' + Messages.REQUESTED_BY + ' <@' + Message.member?.id + '>. ');
-         this.Songs++;
+         this.Songs ++;
+         if (Song.isFirst) this.Player.emit('songChanged', guildQueue, Song, Song);
       }).catch(_ => { 
          if (!guildQueue) {
             queue.stop();
@@ -90,12 +91,12 @@ export const Music = {
       return Result;
    },
    
-   SetSeek(Message: Message, X: number){
+   SetSeek (Message: Message, X: number) {
       let guildQueue = this.Player.getQueue(Message?.guild!.id);
          guildQueue?.seek(X * 1000)
    },
 
-   Progress(Message: Message){
+   Progress (Message: Message) {
       let guildQueue = this.Player.getQueue(Message?.guild!.id);
       const ProgressBar = guildQueue?.createProgressBar();
       this.Dispatch?.send('🔊 **' + ProgressBar?.prettier + '**');

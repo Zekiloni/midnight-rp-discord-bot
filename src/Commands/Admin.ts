@@ -1,5 +1,6 @@
 import { Message, MessageEmbed } from 'discord.js';
 import Config from '../Config';
+import { Enums } from '../Globals/Enums';
 import { Messages } from '../Globals/Messages';
 import { Commands } from '../Managers/Command.Manager';
 
@@ -18,7 +19,7 @@ Commands['mute'] = {
 Commands['verification'] = { 
    Description: Messages.CREATING_VERIFY_CHANNEL,
    Call: (Message: Message, args: string[]) => { 
-      if (Message.channel.id != Config.Verification_Channel) return;
+      if (Message.channel.id != Enums.Channels.VERIFICATION) return;
 
       const Verify_Msg = new MessageEmbed()
          .setColor('#7b19f2')
@@ -87,5 +88,41 @@ Commands['rules'] = {
 		)		
         .setFooter("Midnight Roleplay | mn-rp.com/staff");
     Message.channel.send({ embeds: [Verify_Msg] });
+   }
+}
+
+Commands['test'] = {
+	Description: Messages.CMD_RULES,
+	Call: (Message: Message, args: string[]) => {
+	const Verify_Msg = new MessageEmbed()
+      .setColor('#7b19f2')
+      .setTitle('✦ **Midnight Roleplay** ©️')
+      .setURL('https://mn-rp.com')
+      .addFields(
+       { name: "**Server**", value: "[➛ Kako zapoceti igru na nasem serveru](https://mn-rp.com)", inline: true },
+	   { name: "\u200b", value: "\u200b", inline: true },
+	   { name: "\u200b", value: "\u200b", inline: true }
+      ) 
+	 .addFields(
+       { name: "**Website**", value: "[mn-rp.com](https://mn-rp.com)", inline: true },
+	   { name: "\u200b", value: "\u200b", inline: true },
+       { name: "\u200b", value: "\u200b", inline: true }
+      )
+	 .addFields(
+       { name: "**Discord Pravila, Prijavite bag, Kontaktirajte staff**", value: "<#896874363817697281>", inline: true },
+	   { name: "\u200b", value: "\u200b", inline: true },
+	   { name: "\u200b", value: "\u200b", inline: true }
+      )	  
+      .addFields(
+       { name: "✦ **Midnight Roleplay**", value: "➛ Za sve ljude koji su voljni doprineti zajednici i njenom napretku ocekuju posebne pozicije i male nagrade. Podsecamo vas da na nasem serveru pored standardnih nivoa napredovanja, postoji i posebna sekcija za nase specijalne clanove <@&899632697935298561>, kao sto su poseban privatan kanal i ranija obavestenja o stvarima koje se spremaju za buduce updatove i vise.", inline: true },
+	   { name: "\u200b", value: "\u200b", inline: true },
+	   { name: "\u200b", value: "\u200b", inline: true }
+      )
+       .addFields(
+       { name: "✦ **Midnight Roleplay**", value: "➛ Da dobijete tu specijalnu poziciju, sve sto treba da uradite jeste da boostujete nas discord server.", inline: true },
+	   { name: "\u200b", value: "\u200b", inline: true },
+	   { name: "\u200b", value: "\u200b", inline: true }
+      )
+      Message.channel.send({ embeds: [Verify_Msg] });
    }
 }
