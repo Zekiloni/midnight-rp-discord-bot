@@ -17,15 +17,12 @@ export function Logger (Status: LogType, Message: string) {
 }
 
 export function hasRole (Member: GuildMember, Roles: string[]): boolean { 
-   console.log('hasrole ')
    let Result = false;
    for (const Role of Roles) { 
-      console.log('for role  ' + Role)
       if (Member.roles.cache.find( ({ id }) => id === Role )) {
          Result = true;
       }
    }
-   console.log('hasrole result', Result)
    return Result;
 }
 

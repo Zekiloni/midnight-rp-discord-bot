@@ -1,19 +1,15 @@
-import { GuildMemberRoleManager } from 'discord.js';
 import Config from '../Config';
 import { Enums } from '../Globals/Enums';
 import { Bot } from '../main';
-import { hasRole } from '../Utils';
 
 
 Bot.on('interactionCreate', async Interaction => {
 	if (!Interaction.isButton()) return;
 
 	if (Interaction.customId == 'verification') {
-		console.log('uso')
 		const Guild = Bot.guilds.cache.get(Config.Guild_ID); 
 		const Member = Guild?.members.cache.get(Interaction.member?.user.id!)
       const Role = Guild?.roles.cache.find(role => role.id === Enums.Roles.VERIFIED);
-	
 
 		if (Member?.roles.cache.get(Role?.id!)) {
 			Member.roles.remove(Role!)
@@ -25,7 +21,6 @@ Bot.on('interactionCreate', async Interaction => {
 		await Interaction.reply({ content: Response });
 		await Interaction.deleteReply();
 		
-
 	}
 });
 

@@ -23,58 +23,23 @@ Commands['verification'] = {
    Call: (Message: Message, args: string[]) => { 
       // if (Message.channel.id != Enums.Channels.VERIFICATION) return;
 
-      console.log(1)
-
       const Verify_Msg = new MessageEmbed()
          .setColor('#7b19f2')
-         .setTitle(Config.Name)
-         .addField(Enums.Chars.EMPTY, Enums.Messages.WELCOME_1)
-         .addFields(
-            { 
-               name: Enums.Messages.LINKS, 
-               value: Enums.Links.join('\n'), 
-               inline: true 
-            },
-            { 
-               name: Enums.Messages.USEFUL, 
-               value: Enums.Useful.join('\n'),
-               inline: true 
-            }
+         .setTitle(Enums.Messages.WELCOME_TITLE)
+         .addField(Enums.Chars.EMPTY, Enums.Messages.WELCOME_VERIFY)
+         .addField(Enums.Chars.EMPTY, Enums.Messages.ABOUT_VERIFY)
+         .setFooter(Enums.Messages.CONCTACT_SUPPORT_VERIFY_NO_WORK)
+
+
+
+      const Verify_Actions = new MessageActionRow()
+         .addComponents(
+            new MessageButton()
+               .setCustomId('verification')
+               .setLabel(Enums.Messages.VERIFY_NOW)
+               .setStyle('SUCCESS'),
          );
 
-      console.log(2)
-
-         // .addFields(
-         //    { name: "**Discord Pravila, Prijavite bag, Kontaktirajte staff**", value: "<#896874363817697281>", inline: false },
-         //    { name: "\u200b", value: "\u200b", inline: true },
-         //    { name: "\u200b", value: "\u200b", inline: true }
-         //    )      
-         //    .addFields(
-         //    { name: "✦ **Midnight Roleplay**", value: "➛ Za sve ljude koji su voljni doprineti zajednici i njenom napretku ocekuju posebne pozicije i male nagrade. Podsecamo vas da na nasem serveru pored standardnih nivoa napredovanja, postoji i posebna sekcija za nase specijalne clanove <@&899632697935298561>, kao sto su poseban privatan kanal i ranija obavestenja o stvarima koje se spremaju za buduce updatove i vise.", inline: true },
-         //    { name: "\u200b", value: "\u200b", inline: true },
-         //    { name: "\u200b", value: "\u200b", inline: true }
-         //    )
-         //    .addFields(
-         //    { name: "➛ Da dobijete tu specijalnu poziciju, sve sto treba da uradite jeste da boostujete nas discord server.", value: "\u200b", inline: true },
-         //    { name: "\u200b", value: "\u200b", inline: true },
-         //    { name: "\u200b", value: "\u200b", inline: true }
-         //    )
-         //    .addFields(
-         //    { name: "**Da pristupite ostatku discorda i nastavite dalje, potrebno je da se verifikujete klikom ✅**", value: "\u200b", inline: true }
-         //    )
-
-         console.log(3)
-
-
-            const Verify_Actions = new MessageActionRow()
-            .addComponents(
-               new MessageButton()
-					.setCustomId('verification')
-					.setLabel('Primary')
-					.setStyle('SUCCESS'),
-            );
-
-            console.log(4)
 
       Message.channel.send({ embeds: [Verify_Msg],  components: [Verify_Actions] });
    }
