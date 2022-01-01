@@ -34,7 +34,11 @@ Bot.on('messageCreate', (Message: Message) => {
          const Command = Commands[Name];
          if (Command.Roles && Message.member != null && hasRole(Message.member, Command.Roles) != false) return;
          if (Message.member) { 
-            Command.Call(Message, args);
+            try {
+               Command.Call(Message, args);
+            } catch (e) {
+               console.log(e);
+            }
          }
       } else { 
          Message.reply(Messages.CMD_NOT_FOUND);

@@ -1,7 +1,8 @@
-import { Message, MessageEmbed } from 'discord.js';
+import { Message, MessageActionRow, MessageButton, MessageEmbed } from 'discord.js';
 import Config from '../Config';
 import { Enums } from '../Globals/Enums';
 import { Messages } from '../Globals/Messages';
+import { Bot } from '../main';
 import { Commands } from '../Managers/Command.Manager';
 
 
@@ -17,20 +18,68 @@ Commands['mute'] = {
 
 
 Commands['verification'] = { 
+   Roles: [Enums.Roles.OWNER],
    Description: Messages.CREATING_VERIFY_CHANNEL,
    Call: (Message: Message, args: string[]) => { 
-      if (Message.channel.id != Enums.Channels.VERIFICATION) return;
+      // if (Message.channel.id != Enums.Channels.VERIFICATION) return;
+
+      console.log(1)
 
       const Verify_Msg = new MessageEmbed()
          .setColor('#7b19f2')
-         .setTitle(Message.guild?.name!)
-         .setURL('https://mn-rp.com')
-         .setImage("https://i.imgur.com/q1R8Q6w.png")
-         .addField("Da biste pristupili discord zajednice, morat ćete se složiti s gore navedenim pravilima.", "Klikom na ✅ slažete se s gore navedenim pravilima i bit ćete odgovorni za svoje ponašanje u ovoj zajednici, kršenje bilo kojeg od navedenih pravila rezultirat će kaznom.")
-         .setFooter("Midnight Roleplay | mn-rp.com");
-         Message.channel.send({ embeds: [Verify_Msg] });
-      }
+         .setTitle(Config.Name)
+         .addField(Enums.Chars.EMPTY, Enums.Messages.WELCOME_1)
+         .addFields(
+            { 
+               name: Enums.Messages.LINKS, 
+               value: Enums.Links.join('\n'), 
+               inline: true 
+            },
+            { 
+               name: Enums.Messages.USEFUL, 
+               value: Enums.Useful.join('\n'),
+               inline: true 
+            }
+         );
+
+      console.log(2)
+
+         // .addFields(
+         //    { name: "**Discord Pravila, Prijavite bag, Kontaktirajte staff**", value: "<#896874363817697281>", inline: false },
+         //    { name: "\u200b", value: "\u200b", inline: true },
+         //    { name: "\u200b", value: "\u200b", inline: true }
+         //    )      
+         //    .addFields(
+         //    { name: "✦ **Midnight Roleplay**", value: "➛ Za sve ljude koji su voljni doprineti zajednici i njenom napretku ocekuju posebne pozicije i male nagrade. Podsecamo vas da na nasem serveru pored standardnih nivoa napredovanja, postoji i posebna sekcija za nase specijalne clanove <@&899632697935298561>, kao sto su poseban privatan kanal i ranija obavestenja o stvarima koje se spremaju za buduce updatove i vise.", inline: true },
+         //    { name: "\u200b", value: "\u200b", inline: true },
+         //    { name: "\u200b", value: "\u200b", inline: true }
+         //    )
+         //    .addFields(
+         //    { name: "➛ Da dobijete tu specijalnu poziciju, sve sto treba da uradite jeste da boostujete nas discord server.", value: "\u200b", inline: true },
+         //    { name: "\u200b", value: "\u200b", inline: true },
+         //    { name: "\u200b", value: "\u200b", inline: true }
+         //    )
+         //    .addFields(
+         //    { name: "**Da pristupite ostatku discorda i nastavite dalje, potrebno je da se verifikujete klikom ✅**", value: "\u200b", inline: true }
+         //    )
+
+         console.log(3)
+
+
+            const Verify_Actions = new MessageActionRow()
+            .addComponents(
+               new MessageButton()
+					.setCustomId('verification')
+					.setLabel('Primary')
+					.setStyle('SUCCESS'),
+            );
+
+            console.log(4)
+
+      Message.channel.send({ embeds: [Verify_Msg],  components: [Verify_Actions] });
+   }
 };
+
 
 Commands['say'] = {
    Description: Messages.CMD_SAY,
