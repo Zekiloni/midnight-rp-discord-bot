@@ -21,7 +21,7 @@ Commands['verification'] = {
    Roles: [Enums.Roles.OWNER],
    Description: Messages.CREATING_VERIFY_CHANNEL,
    Call: (Message: Message, args: string[]) => { 
-      // if (Message.channel.id != Enums.Channels.VERIFICATION) return;
+      if (Message.channel.id != Enums.Channels.VERIFICATION) return;
 
       const Verify_Msg = new MessageEmbed()
          .setColor('#7b19f2')
@@ -29,7 +29,6 @@ Commands['verification'] = {
          .addField(Enums.Chars.EMPTY, Enums.Messages.WELCOME_VERIFY)
          .addField(Enums.Chars.EMPTY, Enums.Messages.ABOUT_VERIFY)
          .setFooter(Enums.Messages.CONCTACT_SUPPORT_VERIFY_NO_WORK)
-
 
 
       const Verify_Actions = new MessageActionRow()

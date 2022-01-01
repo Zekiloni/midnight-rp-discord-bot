@@ -1,7 +1,9 @@
 import Config from '../Config';
+import { Message } from 'discord.js';
 import { Enums } from '../Globals/Enums';
 import { Bot } from '../main';
 
+let Counter: Message | undefined;
 
 Bot.on('interactionCreate', async Interaction => {
 	if (!Interaction.isButton()) return;
@@ -16,6 +18,23 @@ Bot.on('interactionCreate', async Interaction => {
 		} else { 
 			Member?.roles.add(Role!);
 		}
+
+
+		// const Content = Enums.Messages.VERIFIED_MEMBERS + '**' + Role?.members.size + '**';
+
+		// if (!Counter) { 
+		// 	Interaction.channel?.messages.fetch({ limit: 1 }).then(Messages => { 
+		// 		if (Messages.last()?.content.startsWith(Enums.Messages.VERIFIED_MEMBERS)) {
+		// 			Counter = Messages.last();
+		// 		} else {
+		// 			Interaction.channel?.send(Content).then((Message) => { 
+		// 				Counter = Message;
+		// 			})
+		// 		}
+		// 	});
+		// } else {
+		// 	Counter?.edit(Content);
+		// }
 		
 		const Response = Member?.roles.cache.get(Role?.id!) ? Enums.Messages.VERIFIED : Enums.Messages.UNVERIFIED;
 		await Interaction.reply({ content: Response });

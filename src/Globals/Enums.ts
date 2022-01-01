@@ -14,6 +14,7 @@ export namespace Enums {
       LINKS = 'Linkovi',
       VERIFIED = 'Uspešno ste se verifikovali !',
       UNVERIFIED = 'Makli ste verifikaciju.',
+      VERIFIED_MEMBERS = 'Verifikovanih članova: ',
       VERIFY_NOW = 'Verifikuj se',
       WELCOME_TITLE = 'Poruka dobrodošlice.',
       WELCOME_VERIFY = 'Dobrodošli na oficijalni Discord server **Midnight Roleplay** zajednice. \n Mi smo GTA V zajednica koja okuplja ljubitelje roleplay-a. \n Osetite atmosferu neverovatnog sveta RP-a sa skriptom \n koja vam daje posebne mogućnosti realizma sa malo RPG elemenata. \n Više o nama možete pronaći [ovde](https://www.mn-rp.com).',
