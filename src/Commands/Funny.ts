@@ -6,6 +6,7 @@ import { Logger, LogType } from '../Utils';
 import Config from '../Config';
 import { Enums } from '../Globals/Enums';
 
+
 Commands['meme'] = { 
    Description: Messages.CMD_MEMES,
    Call: (Message: Message, args: string[])=> { 
