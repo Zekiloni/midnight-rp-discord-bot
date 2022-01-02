@@ -4,7 +4,7 @@ import { Commands } from '../Managers/Command.Manager';
 import { Messages } from '../Globals/Messages';
 import { Logger, LogType } from '../Utils';
 import Config from '../Config';
-
+import { Enums } from '../Globals/Enums';
 
 Commands['meme'] = { 
    Description: Messages.CMD_MEMES,
@@ -12,7 +12,7 @@ Commands['meme'] = {
       const Channel = Message.channel as TextChannel;
       if (/spam/.test(Channel.name) == false) return;
       
-      got(Config.Meme_Link).then(Response => { 
+      got(Enums.Links.REDDIT).then(Response => { 
          const Post = JSON.parse(Response.body)[0].data.children[0].data;
          const { title, permalink, ups, num_comments, url } = Post;
 

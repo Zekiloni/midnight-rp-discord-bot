@@ -26,19 +26,17 @@ Bot.on('messageCreate', (Message: Message) => {
       let Name:string = args.splice(0, 1)[0];
       Name = Name.replace(Config.Prefix, '');
 
-      // DEBUG
-      // console.log('Command name ' + Name);
-      // console.log(args);
 
       if (Commands[Name]) {
          const Command = Commands[Name];
-         if (Command.Roles && Message.member != null && hasRole(Message.member, Command.Roles) != false) return;
-         if (Message.member) { 
-            Command.Call(Message, args);
-         }
+
+         if (Command.Roles && !hasRole(Message?.member!, Command.Roles)) return;
+         Command.Call(Message, args);
+
       } else { 
          Message.reply(Messages.CMD_NOT_FOUND);
       }
+
    }
 });
 

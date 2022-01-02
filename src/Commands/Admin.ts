@@ -1,7 +1,8 @@
-import { Message, MessageEmbed } from 'discord.js';
+import { Message, MessageActionRow, MessageButton, MessageEmbed } from 'discord.js';
 import Config from '../Config';
 import { Enums } from '../Globals/Enums';
 import { Messages } from '../Globals/Messages';
+import { Bot } from '../main';
 import { Commands } from '../Managers/Command.Manager';
 
 
@@ -17,20 +18,32 @@ Commands['mute'] = {
 
 
 Commands['verification'] = { 
+   Roles: [Enums.Roles.OWNER],
    Description: Messages.CREATING_VERIFY_CHANNEL,
    Call: (Message: Message, args: string[]) => { 
       if (Message.channel.id != Enums.Channels.VERIFICATION) return;
 
       const Verify_Msg = new MessageEmbed()
          .setColor('#7b19f2')
-         .setTitle(Message.guild?.name!)
-         .setURL('https://mn-rp.com')
-         .setImage("https://i.imgur.com/q1R8Q6w.png")
-         .addField("Da biste pristupili discord zajednice, morat ćete se složiti s gore navedenim pravilima.", "Klikom na ✅ slažete se s gore navedenim pravilima i bit ćete odgovorni za svoje ponašanje u ovoj zajednici, kršenje bilo kojeg od navedenih pravila rezultirat će kaznom.")
-         .setFooter("Midnight Roleplay | mn-rp.com");
-         Message.channel.send({ embeds: [Verify_Msg] });
-      }
+         .setTitle(Enums.Messages.WELCOME_TITLE)
+         .addField(Enums.Chars.EMPTY, Enums.Messages.WELCOME_VERIFY)
+         .addField(Enums.Chars.EMPTY, Enums.Messages.ABOUT_VERIFY)
+         .setFooter(Enums.Messages.CONCTACT_SUPPORT_VERIFY_NO_WORK)
+
+
+      const Verify_Actions = new MessageActionRow()
+         .addComponents(
+            new MessageButton()
+               .setCustomId('verification')
+               .setLabel(Enums.Messages.VERIFY_NOW)
+               .setStyle('SUCCESS'),
+         );
+
+
+      Message.channel.send({ embeds: [Verify_Msg],  components: [Verify_Actions] });
+   }
 };
+
 
 Commands['say'] = {
    Description: Messages.CMD_SAY,
@@ -88,41 +101,5 @@ Commands['rules'] = {
 		)		
         .setFooter("Midnight Roleplay | mn-rp.com/staff");
     Message.channel.send({ embeds: [Verify_Msg] });
-   }
-}
-
-Commands['test'] = {
-	Description: Messages.CMD_RULES,
-	Call: (Message: Message, args: string[]) => {
-	const Verify_Msg = new MessageEmbed()
-      .setColor('#7b19f2')
-      .setTitle('✦ **Midnight Roleplay** ©️')
-      .setURL('https://mn-rp.com')
-      .addFields(
-       { name: "**Server**", value: "[➛ Kako zapoceti igru na nasem serveru](https://mn-rp.com)", inline: true },
-	   { name: "\u200b", value: "\u200b", inline: true },
-	   { name: "\u200b", value: "\u200b", inline: true }
-      ) 
-	 .addFields(
-       { name: "**Website**", value: "[mn-rp.com](https://mn-rp.com)", inline: true },
-	   { name: "\u200b", value: "\u200b", inline: true },
-       { name: "\u200b", value: "\u200b", inline: true }
-      )
-	 .addFields(
-       { name: "**Discord Pravila, Prijavite bag, Kontaktirajte staff**", value: "<#896874363817697281>", inline: true },
-	   { name: "\u200b", value: "\u200b", inline: true },
-	   { name: "\u200b", value: "\u200b", inline: true }
-      )	  
-      .addFields(
-       { name: "✦ **Midnight Roleplay**", value: "➛ Za sve ljude koji su voljni doprineti zajednici i njenom napretku ocekuju posebne pozicije i male nagrade. Podsecamo vas da na nasem serveru pored standardnih nivoa napredovanja, postoji i posebna sekcija za nase specijalne clanove <@&899632697935298561>, kao sto su poseban privatan kanal i ranija obavestenja o stvarima koje se spremaju za buduce updatove i vise.", inline: true },
-	   { name: "\u200b", value: "\u200b", inline: true },
-	   { name: "\u200b", value: "\u200b", inline: true }
-      )
-       .addFields(
-       { name: "✦ **Midnight Roleplay**", value: "➛ Da dobijete tu specijalnu poziciju, sve sto treba da uradite jeste da boostujete nas discord server.", inline: true },
-	   { name: "\u200b", value: "\u200b", inline: true },
-	   { name: "\u200b", value: "\u200b", inline: true }
-      )
-      Message.channel.send({ embeds: [Verify_Msg] });
    }
 }

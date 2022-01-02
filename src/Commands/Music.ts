@@ -3,13 +3,12 @@ import { Commands } from '../Managers/Command.Manager';
 import { Messages } from '../Globals/Messages';
 
 import { Music } from '../Managers/Music.Manager';
-import { Song } from 'discord-music-player';
 
 
 Commands['play'] = { 
    Description: Messages.CMD_PLAY,
    Call: async (Message: Message, args: string[]) => { 
-      if (!args) return;
+      if (!args || !Message.member?.voice.channel) return;
       Music.Play(Message, args);
       Message.delete();
    }

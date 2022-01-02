@@ -1,4 +1,4 @@
-import { Message, Channel } from "discord.js";
+import { Message, Channel } from 'discord.js';
 
 
 
