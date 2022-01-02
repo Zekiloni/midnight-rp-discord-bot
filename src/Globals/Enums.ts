@@ -23,11 +23,10 @@ export namespace Enums {
       
    }
 
-   // export const Links = [
-   //    '[Vebsajt / UCP](https://www.mn-rp.com)',
-   //    '[Forum](https://forum.mn-rp.com)',
-   //    '[Status Servisa](https://status.mn-rp.com)'
-   // ]
+
+   export enum ChannelNames { 
+      VERIFICATION = '✅︰verification'
+   }
 
    export enum Channels {
       GATEWAY = '897485251989880854',

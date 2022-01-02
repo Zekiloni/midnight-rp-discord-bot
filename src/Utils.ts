@@ -10,7 +10,7 @@ export enum LogType {
    Error, Succes, Info
 }
 
-export function Logger (Status: LogType, Message: string) {
+export function Logger (Status: LogType, Message: any) {
    const Colors = ['\x1b[31m', '\x1b[32m', '\x1b[33m', '\x1b[0m'];
 
    console.log(Colors[Status] + DateTime() + Colors[3] + ' | ' + Message)

@@ -1,6 +1,7 @@
 import { Client, Intents } from 'discord.js';
 import Config from './Config';
 import { Messages } from './Globals/Messages';
+import process from 'process';
 
 
 export const Bot = new Client(
@@ -17,16 +18,26 @@ export const Bot = new Client(
 );
 
 import './Managers/Welcoming.Manager';
-import './Managers/Verification.Manager';
 import './Managers/Command.Manager';
 import './Managers/Message.Manager';
 
 import { Logger, LogType } from './Utils';
+import { SaveCounter } from './Managers/Message.Manager';
 
 Bot.on('ready', () => {
    Bot.user?.setActivity(Config.Website, { type: 'PLAYING' })
    Logger(LogType.Succes, Messages.CMD_BOT_READY)
 });
+
+const Exit = async () => {
+   SaveCounter();
+};
+
+
+process.on('SIGHUP', Exit);
+process.on('SIGQUIT', Exit);
+process.on('SIGTERM', Exit);
+process.on('SIGINT', Exit);
 
 
 Bot.login(Config.Token);

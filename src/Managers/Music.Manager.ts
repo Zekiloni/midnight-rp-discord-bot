@@ -66,7 +66,7 @@ export const Music = {
 
    Skip (Message: Message) {
       let guildQueue = this.Player.getQueue(Message?.guild!.id);
-      if(this.Songs <= 1) return this.Dispatch?.send('🔊 Nema pesme u queue!');
+      if (this.Songs <= 1) return this.Dispatch?.send('🔊 Nema pesme u queue!');
       guildQueue?.skip(); this.Songs--;
    },
 
@@ -93,7 +93,7 @@ export const Music = {
    
    SetSeek (Message: Message, X: number) {
       let guildQueue = this.Player.getQueue(Message?.guild!.id);
-         guildQueue?.seek(X * 1000)
+      guildQueue?.seek(X * 1000).catch(e => Logger(LogType.Error, e));
    },
 
    Progress (Message: Message) {
