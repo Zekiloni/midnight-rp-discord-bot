@@ -1,39 +1,42 @@
 
 
+import AntiSpam from 'discord-anti-spam';
 import { Bot } from '../main';
 import { Logger, LogType } from '../Utils';
-import * as fs from 'fs';
-import * as path from 'path';
 
-let MessagesCounts: { [key: string]: number } = {};
 
-const Forbiden_Words = [
-   'jebem ti', 'bottest'
+const forbiddenWords = [
+   'jebem ti boga', 'mrtvu majku',
 ];
 
-Bot.on('messageCreate', Message => {
-   if (Forbiden_Words.some(word => Message.toString().toLowerCase().includes(word))) {
-      Message.delete().catch((e: string) => Logger(LogType.Error, 'Forbiden Words ' + e));
-   };
 
-   if (MessagesCounts[Message.member?.id!]) {
-      MessagesCounts[Message.member?.id!] ++;
-   } else {
-      MessagesCounts[Message.member?.id!] = 1;
-   }
-
+// @ts-ignore
+const antiSpam = new AntiSpam({
+   warnThreshold: 3,
+   kickThreshold: 6, 
+   banThreshold: 12,
+   maxInterval: 2000, 
+   warnMessage: '{@user}, molim te prestani sa spamom.',
+   kickMessage: '**{user_tag}** je kikovan zbog spamovanja.', 
+   banMessage: '**{user_tag}** je banovan  zbog spamovanja.',
+   muteMessage: "**{user_tag}** je mutiran zbog spamovanja.", 
+   maxDuplicatesWarning: 7, 
+   maxDuplicatesKick: 10, 
+   maxDuplicatesBan: 12, 
+   exemptPermissions: [ 
+      'ADMINISTRATOR'
+   ], 
+   ignoreBots: true,
+   verbose: true, 
+   ignoredUsers: [
+   ],
 });
 
-export function SaveCounter () {
-   fs.writeFile(path.join(__dirname, '../data/Message.Counter.json'), JSON.stringify(MessagesCounts), (Error) => {
-      if (Error) Logger(LogType.Error, Error);
-   });
-};
 
+Bot.on('messageCreate', message => {
+   if (forbiddenWords.some(word => message.toString().toLowerCase().includes(word))) {
+      message.delete().catch((e: string) => Logger(LogType.Error, 'Forbiden Words ' + e));
+   };
 
-(() => { 
-   fs.readFile(path.join(__dirname, '../data/Message.Counter.json'), 'utf8', (Error, Data) => {
-      if (Error) Logger(LogType.Error, Error);
-      MessagesCounts = JSON.parse(Data.toString());
-   });
-})();
+   antiSpam.message(message);
+});

@@ -9,9 +9,13 @@ import { Enums } from '../Globals/Enums';
 
 Commands['meme'] = { 
    Description: Messages.CMD_MEMES,
-   Call: (Message: Message, args: string[])=> { 
-      const Channel = Message.channel as TextChannel;
-      if (/spam/.test(Channel.name) == false) return;
+   Call: (message: Message, args: string[])=> { 
+
+      const channel = <TextChannel>message.channel;
+
+      if (channel.id != Enums.Channels.MEMES) {
+         return;
+      }
       
       got(Enums.Links.REDDIT).then(Response => { 
          const Post = JSON.parse(Response.body)[0].data.children[0].data;
@@ -24,7 +28,7 @@ Commands['meme'] = {
             .setImage(url)
             .setFooter('👍 ' + ups + ', 💬 ' + num_comments);
 
-         Channel.send({ embeds: [Meme] });
+         channel.send({ embeds: [Meme] });
 
       }).catch((e: string) => { 
          Logger(LogType.Error, 'Meme ' + e);
@@ -35,13 +39,13 @@ Commands['meme'] = {
 
 Commands['coin'] = {
    Description: Messages.CMD_COIN,
-   Call: (Message: Message, args: string[])=> { 
+   Call: (message: Message, args: string[])=> { 
       const randomTextsArray = [
             Messages.CMD_RANDOM_COIN_BACK,
             Messages.CMD_RANDOM_COIN_HEAD
         ],
       randomItemFromArray = randomTextsArray[Math.floor(Math.random()*randomTextsArray.length)];
 
-      Message.reply(randomItemFromArray);
+      message.reply(randomItemFromArray);
    }
 };

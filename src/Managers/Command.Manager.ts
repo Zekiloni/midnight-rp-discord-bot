@@ -1,14 +1,16 @@
-import { GuildMember, Message, User } from 'discord.js';
+import { Message } from 'discord.js';
 import { Messages } from '../Globals/Messages';
 import { Bot } from '../main';
 import { hasRole } from '../Utils';
 import Config from '../Config';
+
 
 export let Commands: Commands = {};
 
 type Commands = {
    [key: string]: Command;
 }
+
 
 type Command = {
    Description: string;
@@ -17,6 +19,7 @@ type Command = {
    Roles?: string[];
    Call (Message: Message, args: string[]): void;
 };
+
 
 Bot.on('messageCreate', (Message: Message) => {
    if (Message.author.bot) return;
@@ -44,4 +47,3 @@ Bot.on('messageCreate', (Message: Message) => {
 
 import '../Commands/Funny';
 import '../Commands/Admin';
-import '../Commands/Music';

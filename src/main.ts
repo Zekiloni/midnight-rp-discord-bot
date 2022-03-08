@@ -22,7 +22,6 @@ import './Managers/Command.Manager';
 import './Managers/Message.Manager';
 
 import { Logger, LogType } from './Utils';
-import { SaveCounter } from './Managers/Message.Manager';
 
 Bot.on('ready', () => {
    Bot.user?.setActivity(Config.Website, { type: 'PLAYING' })
@@ -30,7 +29,7 @@ Bot.on('ready', () => {
 });
 
 const Exit = async () => {
-   SaveCounter();
+   
 };
 
 

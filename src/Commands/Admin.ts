@@ -1,20 +1,8 @@
 import { Message, MessageActionRow, MessageButton, MessageEmbed } from 'discord.js';
-import Config from '../Config';
 import { Enums } from '../Globals/Enums';
 import { Messages } from '../Globals/Messages';
-import { Bot } from '../main';
 import { Commands } from '../Managers/Command.Manager';
 
-
-Commands['mute'] = { 
-   Description: Messages.CMD_MUTE,
-   Call: (Message: Message, args: string[]) => { 
-      const Target = Message.mentions.members?.first();
-      const Role = Target?.guild?.roles.cache.find(role => role.name === Config.Muted_Role);
-
-      if (Role) Target?.roles.add(Role);
-   }
-}
 
 
 Commands['verification'] = { 
